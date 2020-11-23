@@ -27,25 +27,3 @@ eyes_cascade_name = args.eyes_cascade
 face_cascade = cv.CascadeClassifier()
 eyes_cascade = cv.CascadeClassifier()
 #-- 1. Load the cascades
-if not face_cascade.load(cv.samples.findFile('Haar/haarcascade_frontalcatface.xml')):
-    print('--(!)Error loading face cascade')
-    exit(0)
-if not eyes_cascade.load(cv.samples.findFile('Haar/haarcascade_eye.xml')):
-    print('--(!)Error loading eyes cascade')
-    exit(0)
-camera_device = args.camera
-#-- 2. Read the video stream
-cap = cv.VideoCapture(camera_device)
-if not cap.isOpened:
-    print('--(!)Error opening video capture')
-    exit(0)
-while True:
-    ret, frame = cap.read()
-    if frame is None:
-        print('--(!) No captured frame -- Break!')
-        break
-    detectAndDisplay(frame)
-    if cv.waitKey(10) == 27:
-        break
-
-#https://docs.opencv.org/trunk/db/d28/tutorial_cascade_classifier.html
